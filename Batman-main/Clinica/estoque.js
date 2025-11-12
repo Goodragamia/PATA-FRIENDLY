@@ -35,6 +35,7 @@ function adicionarItem() {
     document.getElementById('form-estoque').reset();
 }
 
+
 function removerItem() {
     const nomeItem = document.getElementById('item').value.trim();
     const quantidadeItem = parseInt(document.getElementById('quantidade').value, 10);
@@ -71,3 +72,76 @@ document.getElementById('remover').addEventListener('click', removerItem);
 
 
 document.addEventListener('DOMContentLoaded', atualizarLista);
+
+
+
+
+const form = document.querySelector('form');
+const searchInput = document.querySelector('#searchInput');
+const searchButton = document.querySelector('#searchButton');
+const searchResults = document.querySelector('#searchResults');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  // Obter o valor do campo de entrada
+  const query = searchInput.value;
+  
+  // Enviar a solicitação para o servidor
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `/search?q=${query}`, true);
+  
+  xhr.onload = function() {
+    if (this.status === 200) {
+      const results = JSON.parse(this.responseText);
+      
+      // Limpar os resultados anteriores
+      searchResults.innerHTML = '';
+      
+      // Exibir os novos resultados
+      results.forEach(function(result) {
+        const div = document.createElement('div');
+        div.innerHTML = `<h2>${result.title}</h2><p>${result.description}</p>`;
+        searchResults.appendChild(div);
+      });
+    }
+  }
+  
+  xhr.send();
+});
+
+const express = require('express');
+const app = express();
+
+app.use(express.static('public'));
+
+app.get('/search', function(req, res) {
+  const query = req.query.q;
+  
+  // Gerar resultados aleatórios
+  const results = [
+    {
+      title: 'Result 1',
+      description: 'Description of result 1.'
+    },
+    {
+      title: 'Result 2',
+      description: 'Description of result 2.'
+    },
+    {
+      title: 'Result 3',
+      description: 'Description of result 3.'
+    }
+  ];
+
+  // Filtrar resultados por consulta
+  const filteredResults = results.filter(function(result) {
+    return result.title.toLowerCase().includes(query.toLowerCase()) || result.description.toLowerCase().includes(query.toLowerCase());
+  });
+
+  res.json(filteredResults);
+});
+
+app.listen(3000, function() {
+  console.log('Server is listening on port 3000');
+});

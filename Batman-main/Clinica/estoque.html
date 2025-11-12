@@ -20,11 +20,16 @@
             <label for="item">Nome do Item:</label>
             <input type="text" id="item" name="item" required placeholder="Nome do item">
 
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" name="quantidade" required placeholder="Quantidade" min="1">
+           <label for="tipoConsulta">Cargo:</label>
+            <select id="consulta" name="consulta" required>
+                <option value="" disabled selected>Selecione a consulta</option>
+                <option value="cirurgia">Cirurgia</option>
+                <option value="banhoTosa">Banho e Tosa</option>
+                <option value="vacina">Vacinação</option>
+            </select>
+
 
             <button type="button" id="adicionar">Agendar</button>
-            <button type="button" id="remover">Remover Item</button>
         </form>
 
         <h2>Consultas Agendadas</h2>
