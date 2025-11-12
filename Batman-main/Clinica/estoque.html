@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a class="voltar" href="index.html">Voltar</a>
+
+    <div id="containerEstoque">
+       
+        <div id="titulo">Agendamento</div>
+
+        
+
+        <form id="form-estoque">
+            <label for="item">Nome do Item:</label>
+            <input type="text" id="item" name="item" required placeholder="Nome do item">
+
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" required placeholder="Quantidade" min="1">
+
+            <button type="button" id="adicionar">Agendar</button>
+            <button type="button" id="remover">Remover Item</button>
+        </form>
+
+        <h2>Consultas Agendadas</h2>
+        <form>
+  <input type="text" id="searchInput" placeholder="Digite o nome do paciente">
+  <button type="submit" id="searchButton">Buscar agendamento</button>
+</form>
+
+<div id="searchResults"></div>
+        <ul id="lista-estoque"></ul>
+    </div>
+
+    <script src="estoque.js"></script>
+    
+</body>
+</html>
