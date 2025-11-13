@@ -1,18 +1,18 @@
 
-const listaEstoque = JSON.parse(localStorage.getItem('estoque')) || [];
+const listaPaciente = JSON.parse(localStorage.getItem('paciente')) || [];
 function atualizarLista() {
-    const listaElement = document.getElementById('lista-estoque');
+    const listaElement = document.getElementById('lista-paciente');
     listaElement.innerHTML = ''; 
 
     listaEstoque.forEach(item => {
         const li = document.createElement('li');
-        li.textContent = `${item.nome} - Quantidade: ${item.quantidade}`;
+        li.textContent = `${item.nome} - Tipo de consulta: ${item.consulta}`;
         listaElement.appendChild(li);
     });
 }
 
 function adicionarItem() {
-    const nomeItem = document.getElementById('item').value.trim();
+    const nomeItem = document.getElementById('consulta').value.trim();
     const quantidadeItem = parseInt(document.getElementById('quantidade').value, 10);
 
     if (nomeItem === '' || isNaN(quantidadeItem) || quantidadeItem <= 0) {
@@ -35,6 +35,14 @@ function adicionarItem() {
     document.getElementById('form-estoque').reset();
 }
 
+function adicionarPaciente() {
+  const nomePaciente = document.getElementById('consulta').value.trim();
+  const tipoConsulta = document.getElementById('consulta').value.trim();
+
+  if (nomePaciente === '' || ) {
+    
+  }
+}
 
 function removerItem() {
     const nomeItem = document.getElementById('item').value.trim();
@@ -75,7 +83,7 @@ document.addEventListener('DOMContentLoaded', atualizarLista);
 
 
 
-
+/*
 const form = document.querySelector('form');
 const searchInput = document.querySelector('#searchInput');
 const searchButton = document.querySelector('#searchButton');
@@ -144,4 +152,4 @@ app.get('/search', function(req, res) {
 
 app.listen(3000, function() {
   console.log('Server is listening on port 3000');
-});
+});*/
